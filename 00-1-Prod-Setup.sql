@@ -1,3 +1,13 @@
+/**************************************************************************
+
+Redgate On the Cog Workshop - 2 hour
+
+Setup 00-1-Prod-Setup
+
+This script creates the production database.
+
+***************************************************************************/
+
 USE [master]
 GO
 CREATE DATABASE [SimpleTalk_5_Prod]
@@ -210,20 +220,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[BlogArchive_ModDate](
-	[BlogArchiveID] [int] IDENTITY(1,1) NOT NULL,
-	[BlogID] [int] NULL,
-	[modifieddate] [datetime] NULL,
- CONSTRAINT [BlogArchiveModDate_PK] PRIMARY KEY CLUSTERED 
-(
-	[BlogArchiveID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [dbo].[BlogContent](
 	[BlogContentKey] [int] IDENTITY(1,1) NOT NULL,
 	[BlogID] [int] NULL,
@@ -268,51 +264,6 @@ CREATE TABLE [dbo].[customer](
 (
 	[customerid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[DMSSTAT_RSTATS](
-	[runid] [varchar](250) NOT NULL,
-	[ruleid] [varchar](50) NOT NULL,
-	[ruleblock] [int] NOT NULL,
-	[rulenum] [int] NOT NULL,
-	[rulesubscript] [int] NOT NULL,
-	[ruletype] [varchar](50) NOT NULL,
-	[rulecreated] [datetime] NOT NULL,
-	[ruleupdated] [datetime] NOT NULL,
-	[secondsactive] [int] NOT NULL,
-	[rulestatus] [char](1) NOT NULL,
-	[rulesource] [varchar](250) NULL,
-	[ruletarget] [varchar](250) NULL,
-	[rowoperations] [int] NULL,
-	[coloperations] [int] NULL,
-	[rulePrevRPN] [int] NULL,
-	[ruleRPN] [int] NULL
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[DMSSTAT_TSTATS](
-	[runid] [varchar](250) NOT NULL,
-	[ruleid] [varchar](50) NOT NULL,
-	[statscreated] [datetime] NOT NULL,
-	[statsupdated] [datetime] NOT NULL,
-	[ruletype] [varchar](50) NOT NULL,
-	[ruleblock] [int] NOT NULL,
-	[rulenum] [int] NOT NULL,
-	[rulesubscript] [int] NOT NULL,
-	[controllerid] [varchar](50) NULL,
-	[tabledatabase] [varchar](250) NOT NULL,
-	[tableschema] [varchar](250) NOT NULL,
-	[tablename] [varchar](250) NOT NULL,
-	[tablecolumn] [varchar](250) NULL,
-	[rowoperations] [int] NULL,
-	[coloperations] [int] NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_NULLS ON
@@ -369,18 +320,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[MyTable](
-	[myid] [int] NOT NULL,
- CONSTRAINT [mytablepk] PRIMARY KEY CLUSTERED 
-(
-	[myid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [dbo].[Ratings](
 	[RatingKey] [int] IDENTITY(1,1) NOT NULL,
 	[ArticlesID] [int] NULL,
@@ -428,19 +367,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Steve](
-	[AnInt] [int] NOT NULL,
-	[SomeString] [varchar](100) NULL,
- CONSTRAINT [StevePK] PRIMARY KEY CLUSTERED 
-(
-	[AnInt] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [dbo].[Users](
 	[UserID] [int] IDENTITY(1,1) NOT NULL,
 	[Username] [varchar](200) NULL,
@@ -453,48 +379,6 @@ CREATE TABLE [dbo].[Users](
 	[UserID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [RedGateLocal].[DeploymentMetadata](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](max) NOT NULL,
-	[Type] [varchar](50) NOT NULL,
-	[Action] [varchar](50) NOT NULL,
-	[By] [nvarchar](128) NOT NULL,
-	[As] [nvarchar](128) NOT NULL,
-	[CompletedDate] [datetime] NOT NULL,
-	[With] [nvarchar](128) NOT NULL,
-	[BlockId] [varchar](50) NOT NULL,
-	[InsertedSerial] [binary](8) NOT NULL,
-	[UpdatedSerial] [timestamp] NOT NULL,
-	[MetadataVersion] [varchar](50) NOT NULL,
-	[Hash] [nvarchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-SET ANSI_PADDING ON
-GO
-CREATE NONCLUSTERED INDEX [IX_DMSSTAT_RSTATS] ON [dbo].[DMSSTAT_RSTATS]
-(
-	[runid] ASC,
-	[ruleid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
-SET ANSI_PADDING ON
-GO
-CREATE NONCLUSTERED INDEX [IX_DMSSTAT_TSTATS_A] ON [dbo].[DMSSTAT_TSTATS]
-(
-	[runid] ASC,
-	[ruleid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-GO
-SET ANSI_PADDING ON
 GO
 CREATE NONCLUSTERED INDEX [EventLogger_IDX] ON [dbo].[EventLogger]
 (
@@ -526,16 +410,6 @@ GO
 ALTER TABLE [dbo].[EventLogger] ADD  CONSTRAINT [DF__EventLogg__LogUs__22FF2F51]  DEFAULT (user_name()) FOR [LogUser]
 GO
 ALTER TABLE [dbo].[RSSFeeds] ADD  CONSTRAINT [DF__RSSFeeds__Checke__34E8D562]  DEFAULT ((0)) FOR [Checked]
-GO
-ALTER TABLE [RedGateLocal].[DeploymentMetadata] ADD  DEFAULT (original_login()) FOR [By]
-GO
-ALTER TABLE [RedGateLocal].[DeploymentMetadata] ADD  DEFAULT (suser_sname()) FOR [As]
-GO
-ALTER TABLE [RedGateLocal].[DeploymentMetadata] ADD  DEFAULT (getdate()) FOR [CompletedDate]
-GO
-ALTER TABLE [RedGateLocal].[DeploymentMetadata] ADD  DEFAULT (app_name()) FOR [With]
-GO
-ALTER TABLE [RedGateLocal].[DeploymentMetadata] ADD  DEFAULT (@@dbts+(1)) FOR [InsertedSerial]
 GO
 ALTER TABLE [dbo].[BlogContent]  WITH CHECK ADD  CONSTRAINT [BlogContent_Blogs_BlogID] FOREIGN KEY([BlogID])
 REFERENCES [dbo].[Blogs] ([BlogID])
@@ -749,14 +623,6 @@ GO
 CREATE PROCEDURE [dbo].[GetEvent]
 AS
 SELECT * FROM dbo.DPS2017
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GetOne]
-AS 
-SELECT 1
 GO
 SET ANSI_NULLS ON
 GO
