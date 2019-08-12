@@ -1,18 +1,32 @@
-Connect-SqlClone -ServerUrl "http://dkrSpectre:14145/"
+###################################################################
+#
+# Set up Provision variables for machines and paths
+# Set up default names
+#
+###################################################################
+$ProvisionMachine = "dkrSpectre"
+$ProvisionURL = "http://" + $ProvisionMachine + ":14145/"
+$ProvisionInstance = "2017"
+$ImagePath = 'C:\SQLCloneImages'
 $ImageDate = (get-date).ToString('yyyyMMdd')
-$ImageName = 'DataMaskerDemo_Base'
-$CloneName = 'DataMaskerDev_Steve'
+$ImageName = 'SimpleTalkDev_Base'
+$SourceDatabase = "SimpleTalk_5_Prod"
+
+###########################################################
+# Provision Connection
+###########################################################
+Connect-SqlClone -ServerUrl $ProvisionURL
 
 ###########################################################
 # Set proper Instance, path, and masking sets.
 ###########################################################
-$SqlServerInstance = Get-SqlCloneSqlServerInstance -MachineName dkrSpectre -InstanceName SQL2016
-$ImageDestination = Get-SqlCloneImageLocation -Path 'C:\SQLCloneImages'
+$SqlServerInstance = Get-SqlCloneSqlServerInstance -MachineName $ProvisionMachine -InstanceName $ProvisionInstance
+$ImageDestination = Get-SqlCloneImageLocation -Path 
 $Mask = New-SqlCloneMask -Path 'C:\Users\way0u\Documents\Data Masker(SqlServer)\Masking Sets\Sitc2018Demo_DataMaskerDemo.DMSMaskSet'
 $InjectScript = New-SqlCloneSqlScript -Path 'C:\Users\way0u\Documents\SQL Server Management Studio\Inject_Dm_Customer.sql'
 
 ###########################################################
-# remove old clone
+# remove old clones from image
 ###########################################################
 $CurrentImage = Get-SqlCloneImage -Name $ImageName
 $clones = Get-SqlClone -Image $CurrentImage
@@ -23,24 +37,13 @@ $clones | foreach { $_ | Remove-SqlClone | Wait-SqlCloneOperation };
 ###########################################################
 $ImageToRemove = Get-SqlCloneImage -Name $ImageName
 If $ImageToRemove Then {
-  Remove-SqlCloneImage -Image $ImageToRemove | Wait-SqlCloneOperation
+    Remove-SqlCloneImage -Image $ImageToRemove | Wait-SqlCloneOperation
 }
 
 ###########################################################
 #create masked image
 ###########################################################
-$ImageOperation = New-SqlCloneImage -Name $ImageName -SqlServerInstance $SqlServerInstance -DatabaseName 'DataMaskerDemo_Prod' -Destination $ImageDestination -Modifications @($Mask,  $InjectScript)
+$ImageOperation = New-SqlCloneImage -Name $ImageName -SqlServerInstance $SqlServerInstance -DatabaseName $SourceDatabase -Destination $ImageDestination -Modifications @($Mask, $InjectScript)
 
 Wait-SqlCloneOperation -Operation $ImageOperation
 
-###########################################################
-# create new clone
-###########################################################
-$image = Get-SqlCloneImage -Name $ImageName
-$image | New-SqlClone -Name $CloneName -Location $sqlServerInstance | Wait-SqlCloneOperation
-$CloneName = 'DataMaskerDev_Grant'
-$image | New-SqlClone -Name $CloneName -Location $sqlServerInstance | Wait-SqlCloneOperation
-$CloneName = 'DataMaskerDev_Kathi'
-$image | New-SqlClone -Name $CloneName -Location $sqlServerInstance | Wait-SqlCloneOperation
-$CloneName = 'DataMaskerDev_Kendra'
-$image | New-SqlClone -Name $CloneName -Location $sqlServerInstance | Wait-SqlCloneOperation
