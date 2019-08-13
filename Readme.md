@@ -11,7 +11,10 @@ This covers the database environment setup for the system. There are a few items
 *** Process for Setting up in Advance
 - Connect to the production SQL Server instance. 
 - Run 00-1-Prod-Setup.sql
-- Run Data Generator and populate the tables with some data. Project included, instance connection needs to change. Be sure to reset the connection string
+- Run 00-2-Load_SimpleTalk_5_Prod.sqlgen with SQL Data Generator and populate the tables with some data. Project included, instance connection needs to change. Be sure to reset the connection string
+- Run 00-3-CleanData.sql
+- Run 00-4-Prompt_Setup.sql
+- Run 00-5-Provision_Setup.sql
 - Clone Github repo to your account if needed (https://github.com/way0utwest/ASimpleTalkDB)
 - PoSh Run CreateMaskedImage.ps1 - Change SQL Clone server credentials if needed. Set the correct server name, instance, and clone location
 

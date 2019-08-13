@@ -2,12 +2,10 @@
 
 Redgate On the Cog Workshop - 2 hour
 
-Setup 00-1-Prod-Setup
+This script creates the production database. Run this as the first step
 
-This script creates the production database.
-
+Copyright 2019 Redgate Software
 ***************************************************************************/
-
 USE [master]
 GO
 CREATE DATABASE [SimpleTalk_5_Prod]

@@ -1,8 +1,8 @@
-DROP DATABASE DataMaskerDev_Grant
+DROP DATABASE SimpleTalkDev_Grant
 GO
-DROP DATABASE DataMaskerDev_Kathi
+DROP DATABASE SimpleTalkDev_Kathi
 GO
-DROP DATABASE DataMaskerDev_Kendra
+DROP DATABASE SimpleTalkDev_Kendra
 GO
-DROP DATABASE DataMaskerDev_Steve
+DROP DATABASE SimpleTalkDev_Steve
 GO
