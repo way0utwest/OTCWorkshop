@@ -11,9 +11,9 @@ This covers the database environment setup for the system. There are a few items
 *** Process for Setting up in Advance
 - Connect to the production SQL Server instance. 
 - Run 00-1-Prod-Setup.sql
-- Run Data Generator and populate the tables with some data. Project included, instance connection needs to change
+- Run Data Generator and populate the tables with some data. Project included, instance connection needs to change. Be sure to reset the connection string
 - Clone Github repo to your account if needed (https://github.com/way0utwest/ASimpleTalkDB)
-- PoSh Run CreateMaskedImage.ps1 - Change SQL Clone server credentials if needed
+- PoSh Run CreateMaskedImage.ps1 - Change SQL Clone server credentials if needed. Set the correct server name, instance, and clone location
 
 *** Process for Setting up that day
 

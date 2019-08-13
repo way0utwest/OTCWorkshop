@@ -92,7 +92,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Contacts](
-	[ContactsID] [int] IDENTITY(1,1) NOT NULL,
+	[ContactsID] [int] IDENTITY(101,1) NOT NULL,
 	[ContactFullName] [nvarchar](100) NOT NULL,
 	[PhoneWork] [nvarchar](25) NULL,
 	[PhoneMobile] [nvarchar](25) NULL,
@@ -786,6 +786,4 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'PKException', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'EmailMessage_Archive'
 GO
 EXEC sys.sp_addextendedproperty @name=N'PKException', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'EmailMessages'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'This table records deployments with migration scripts. Learn more: http://rd.gt/230GBP3' , @level0type=N'SCHEMA',@level0name=N'RedGateLocal', @level1type=N'TABLE',@level1name=N'DeploymentMetadata'
 GO

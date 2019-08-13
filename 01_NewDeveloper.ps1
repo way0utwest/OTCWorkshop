@@ -9,7 +9,7 @@ The script will then create a new cloned datbase, using this image and the first
 The script creates this database on the instance specified in the third parameter.
 
 .EXAMPLE
-./01_NewDeveloper.ps1 Steve SimpleTalkBase Plato\SQL2017
+./01_NewDeveloper.ps1 Steve SimpleTalkDev_Base dkrSpectre\SQL2017
 
 .NOTES
 This is a demonstration script of how you might quickly onboard a new developer.
@@ -29,7 +29,7 @@ $MachineName = $Instance[0]
 $InstanceName = $Instance[1]
 
 # Setup
-$CloneServer = "http://Socrates:14145"
+$CloneServer = "http://dkrSpectre:14145"
 
 # Connect to SQL Clone Server
 Connect-SqlClone -ServerUrl  $CloneServer

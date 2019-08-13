@@ -1,1 +1,1 @@
-./01_NewDeveloper.ps1 Steve SimpleTalkBase Plato\SQL2017
+./01_NewDeveloper.ps1 Steve SimpleTalkDev_Base dkrSpectre\SQL2017
