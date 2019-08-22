@@ -1,5 +1,4 @@
 /**************************************************************************
-
 Redgate On the Cog Workshop - 2 hour
 
 Breaking down SQL Provision
@@ -17,13 +16,22 @@ Copyright 2019 Redgate Software
 
 
 -- Let's add new data and show the image process.
+-- check our data in dev
+SELECT * FROM dbo.RSSFeeds
+GO
+-- Check prod data
 USE SimpleTalk_5_Prod
 GO
+SELECT * FROM dbo.RSSFeeds
+GO
+
+-- Add new data
 INSERT dbo.RSSFeeds
 (FeedName, Checked, FeedBurner, ModifiedDate)
 VALUES
-('SQL in the City', 1, 1, SYSDATETIME())
+('Redgate Automation', 1, 1, SYSDATETIME())
 GO
+-- check the data
 SELECT * FROM dbo.RSSFeeds
 GO
 
@@ -39,7 +47,7 @@ GO
 
 -- deploy new dev database
 -- ./01_NewDeveloper.ps1 Kendra SimpleTalk_Base dkrSpectre\SQL2017
-USE SimpleTalk_1_Grant
+USE SimpleTalk_1_Kendra
 GO
 SELECT * 
  FROM dbo.RSSFeeds

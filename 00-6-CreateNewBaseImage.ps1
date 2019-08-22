@@ -13,8 +13,11 @@ $ImageBaseName = 'SimpleTalk_Base'
 $ImageName = 'SimpleTalk_Base_New'
 $SourceDatabase = 'SimpleTalk_5_Prod'
 $ImageOldName = 'SimpleTalk_Dev_Base_Old'
-$Mask = New-SqlCloneMask -Path 'SimpleTalk_Prod_Mask.DMSMaskSet'
-$InjectScript = New-SqlCloneSqlScript -Path 'inject_st_contact.sql'
+$dir = Get-Location
+$MaskingScript = $dir.tostring() + '\' + 'SimpleTalk_Prod_Mask.DMSMaskSet' 
+$InjectScriptPath = $dir.tostring() + '\' + 'inject_st_contact.sql'
+$Mask = New-SqlCloneMask -Path $MaskingScript
+$InjectScript = New-SqlCloneSqlScript -Path $InjectScriptPath
 
 ###########################################################
 # Provision Connection
