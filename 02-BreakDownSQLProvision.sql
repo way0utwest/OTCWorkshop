@@ -17,22 +17,23 @@ Copyright 2019 Redgate Software
 
 -- Let's add new data and show the image process.
 -- check our data in dev
-SELECT * FROM dbo.RSSFeeds
+SELECT * FROM dbo.RSSFeeds;
 GO
 -- Check prod data
-USE SimpleTalk_5_Prod
+USE SimpleTalk_5_Prod;
 GO
-SELECT * FROM dbo.RSSFeeds
+SELECT * FROM dbo.RSSFeeds;
 GO
 
 -- Add new data
 INSERT dbo.RSSFeeds
 (FeedName, Checked, FeedBurner, ModifiedDate)
 VALUES
-('Redgate Automation', 1, 1, SYSDATETIME())
+('Automation Workshop', 1, 1, SYSDATETIME());
 GO
 -- check the data
 SELECT * FROM dbo.RSSFeeds
+ORDER BY ModifiedDate DESC;
 GO
 
 
@@ -47,10 +48,11 @@ GO
 
 -- deploy new dev database
 -- ./01_NewDeveloper.ps1 Kendra SimpleTalk_Base dkrSpectre\SQL2017
-USE SimpleTalk_1_Kendra
+USE SimpleTalk_1_Kendra;
 GO
 SELECT * 
  FROM dbo.RSSFeeds
+ ORDER BY ModifiedDate DESC;
 GO
 
 

@@ -19,16 +19,18 @@ GO
 -- in repo for ASimpleTalkDB
 --      git checkout master
 --      git branch -d steve
-
+-- cd ..
+-- rmdir aSimpleTalkDB /s
+-- delete branch on github
 
 USE SimpleTalk_5_Prod
 GO
 DELETE FROM dbo.RSSFeeds
-WHERE FeedName = 'Redgate Automation'
+WHERE FeedName = 'Automation Workshop'
 GO
 USE SimpleTalk_5_Prod
 GO
-DROP INDEX UserIDX_Username
+DROP INDEX UserIDX_Username ON dbo.Users
 GO
 USE master
 GO

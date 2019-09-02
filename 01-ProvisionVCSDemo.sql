@@ -78,7 +78,8 @@ GO
 -- Git branch -b steve
 
 -- Link in SOC
--- Get latest, commit new changes, push.
+-- Get latest, 
+-- create proc, COMMIT new changes, push.
 -- Show at https://github.com/way0utwest/ASimpleTalkDB
 
 -- git push -u origin steve
