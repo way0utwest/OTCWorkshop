@@ -87,6 +87,8 @@ GO
 
 
 
+GO
+CREATE DATABASE SimpleTalk_3_QA
 /**************************************************************
 
                           End Demo
