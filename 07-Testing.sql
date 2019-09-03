@@ -13,6 +13,7 @@ Let's add data with data generator - open project
 Generate some data in dev db
 **************************************************************************************/
 
+ 
 
 
 
@@ -24,7 +25,7 @@ Demo - tsqlt framework
 Add the tsqlt framework to our dev database
 - Show SQL Test
 **************************************************************************************/
-
+SELECT * FROM tSQLt.Info()
 
 
 
@@ -78,6 +79,7 @@ GO
 ALTER TABLE dbo.NewTable ADD CONSTRAINT NewTablePK PRIMARY KEY (NewTableID)
 GO
 
+
 -- run tests
 
 /*
@@ -105,15 +107,8 @@ cs_payment test code snippet
 EXEC dbo.PaymentReportForArticles @startdate = '1983-01-01',
                                   @enddate = '1984-01-01';
 GO
-
-
-
-
-
-GO
-
-EXEC tsqlt.Run @TestName = N'zPaymentTests.[test check article payment totals and bonus]'
-
+--EXEC tsqlt.NewTestClass @ClassName = N'zPaymentTests' -- nvarchar(max)
+--CREATE PROCEDURE [zPaymentTests].[test ensure article payment aggregates are correct]
 
 
 
@@ -122,7 +117,14 @@ EXEC tsqlt.Run @TestName = N'zPaymentTests.[test check article payment totals an
 
 
 GO
+EXEC tsqlt.Run @TestName = N'zPaymentTests.[test ensure article payment aggregates are correct]'
 
+
+
+
+
+
+GO
 
 
 
