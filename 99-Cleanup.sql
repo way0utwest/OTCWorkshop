@@ -28,6 +28,12 @@ GO
 DELETE FROM dbo.RSSFeeds
 WHERE FeedName = 'Automation Workshop'
 GO
+ALTER TABLE Articles DROP COLUMN Ratings
+GO
+DROP TABLE dbo.Question
+GO
+DROP PROCEDURE dbo.GetThree
+GO
 USE SimpleTalk_5_Prod
 GO
 DROP INDEX UserIDX_Username ON dbo.Users
