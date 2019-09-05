@@ -1,9 +1,10 @@
-/*
-SQL Prompt Demo - Setup
+/**************************************************************************
+Redgate On the Cog Workshop - 2 hour
 
-Database: SimpleTalkDev
+Testing T-SQL Code
+
 Copyright 2019 Redgate Software
-*/
+***************************************************************************/
 USE SimpleTalk_1_Steve
 GO
 

@@ -1,5 +1,4 @@
 /**************************************************************************
-
 Redgate On the Cog Workshop - 2 hour
 
 Safe Environments with Data Masker
